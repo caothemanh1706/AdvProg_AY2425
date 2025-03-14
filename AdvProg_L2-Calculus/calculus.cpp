@@ -18,9 +18,17 @@ double mySqrt(double x);
     Returns:
         double: cosine of x
 ***/
-double myCos(double x) 
+double myCos(double x)
 {
-    return 0.0;
+   double term=1.0,sum=1.0;
+   int n=2,sign=-1;
+   while(abs(term)>1e-6){
+    term *= x*x/(n*(n-1));
+    term += term*sign;
+    sign=-sign;
+    n+=2;
+   }
+   return sum;
 }
 
 /***
@@ -31,7 +39,15 @@ double myCos(double x)
 ***/
 double mySin(double x)
 {
-    return 0.0;
+   double term=x,sum=x;
+   int n=3,sign=-1;
+   while(abs(term)>1e-6){
+    term *= x*x/(n*(n-1));
+    term += term*sign;
+    sign=-sign;
+    n+=2;
+   }
+   return sum;
 }
 
 
@@ -46,7 +62,9 @@ double mySqrt(double x) {
         cout << "Invalid argument" << endl;
         exit(1);
     }
-
-    
-    return 0;
+     double g=x/2.0;
+    while (abs(g*g-x)>1e-6){
+        g=(g+x/g)/2.0;
+    }
+    return g;
 }
